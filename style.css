@@ -1,0 +1,299 @@
+/* =========================================================
+   VES VES — Coffee Menu
+   ملف الأنماط الرئيسي
+   ========================================================= */
+
+/* ---------- 1) المتغيرات العامة (CSS Variables) ---------- */
+:root{
+  --color-orange:       #FF7A29;
+  --color-orange-dark:  #E85F0D;
+  --color-brown:        #8B5A3C;
+  --color-beige:        #F9F7F3;
+  --color-white:        #FFFFFF;
+  --color-ink:          #3A2A20;
+
+  --font-ar: 'Cairo', sans-serif;
+  --font-en: 'Poppins', sans-serif;
+
+  --page-max-width: 430px;
+  --radius-sm: 10px;
+  --radius-md: 18px;
+  --radius-lg: 28px;
+
+  --ease: cubic-bezier(.22,1,.36,1);
+}
+
+/* ---------- 2) إعادة ضبط أساسية ---------- */
+*{ margin:0; padding:0; box-sizing:border-box; }
+
+html{ scroll-behavior:smooth; }
+
+body{
+  background:#ECEAE5;
+  font-family:var(--font-ar);
+  color:var(--color-ink);
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+}
+
+ul{ list-style:none; }
+
+/* ---------- 3) إطار الصفحة (Mobile First / 430px) ---------- */
+.page-frame{
+  position:relative;
+  width:100%;
+  max-width:var(--page-max-width);
+  min-height:100vh;
+  background:var(--color-beige);
+  overflow:hidden;
+  border-inline:1px dashed rgba(139,90,60,.35);
+  isolation:isolate;
+}
+
+@media (min-width:480px){
+  body{ padding:32px 16px; }
+  .page-frame{
+    min-height:auto;
+    border:1px dashed rgba(139,90,60,.4);
+    border-radius:var(--radius-lg);
+    box-shadow:0 30px 60px -20px rgba(139,90,60,.25);
+    margin-block:0;
+  }
+}
+
+/* ---------- 4) حرف MENU الكبير على الجانب الأيسر ---------- */
+.menu-letters{
+  position:absolute;
+  top:70px;
+  left:-26px;
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+  z-index:1;
+  pointer-events:none;
+}
+
+.menu-letter{
+  font-family:var(--font-en);
+  font-weight:700;
+  font-size:96px;
+  line-height:.82;
+  letter-spacing:-2px;
+  color:var(--color-orange);
+  transform:translateX(-4px);
+  animation:letterFloat 6s ease-in-out infinite;
+  animation-delay:calc(var(--i) * .3s);
+}
+
+@keyframes letterFloat{
+  0%,100%{ transform:translateX(-4px) translateY(0); }
+  50%{ transform:translateX(-4px) translateY(-6px); }
+}
+
+/* ---------- 5) النجوم واللمعات ---------- */
+.sparkle{
+  position:absolute;
+  color:var(--color-orange);
+  font-size:22px;
+  z-index:1;
+  animation:sparkleTwinkle 3s ease-in-out infinite;
+  pointer-events:none;
+}
+.sparkle--1{ top:340px; left:26px; font-size:26px; animation-delay:.2s; }
+.sparkle--2{ top:398px; left:78px; font-size:16px; animation-delay:1s; }
+.sparkle--3{ top:120px; right:24px; font-size:14px; color:var(--color-brown); animation-delay:1.6s; }
+
+@keyframes sparkleTwinkle{
+  0%,100%{ opacity:.35; transform:scale(.85) rotate(0deg); }
+  50%{ opacity:1; transform:scale(1.15) rotate(15deg); }
+}
+
+/* ---------- 6) الهيدر ---------- */
+.site-header{
+  position:relative;
+  z-index:2;
+  text-align:center;
+  padding:38px 20px 18px;
+}
+
+.brand{
+  font-family:var(--font-en);
+  font-weight:700;
+  font-size:40px;
+  letter-spacing:2px;
+  color:var(--color-orange);
+  text-transform:uppercase;
+}
+
+.subtitle{
+  font-family:var(--font-en);
+  font-style:italic;
+  font-weight:500;
+  font-size:19px;
+  color:var(--color-brown);
+  margin-top:2px;
+}
+
+/* ---------- 7) الأقسام ---------- */
+main{ position:relative; z-index:2; }
+
+.menu-section{
+  position:relative;
+  padding:6px 24px 34px 90px; /* مساحة يسار لحرف MENU */
+}
+
+/* عنوان القسم الثابت أثناء التمرير */
+.sticky-title{
+  position:sticky;
+  top:0;
+  z-index:5;
+  display:inline-block;
+  background:var(--color-beige);
+  font-family:var(--font-en);
+  font-style:italic;
+  font-weight:600;
+  font-size:24px;
+  color:var(--color-orange-dark);
+  padding:14px 6px 10px;
+  border-bottom:1px solid rgba(139,90,60,.25);
+  width:100%;
+}
+
+/* ---------- 8) عناصر القائمة ---------- */
+.menu-list{
+  margin-top:6px;
+}
+
+.menu-item{
+  display:flex;
+  flex-direction:row-reverse; /* يضمن بقاء السعر في أقصى اليمين دائمًا */
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:14px 4px;
+  border-bottom:1px dashed rgba(139,90,60,.3);
+  transition:transform .3s var(--ease), background .3s var(--ease);
+}
+
+.menu-item:last-child{ border-bottom:none; }
+
+.menu-item:hover{
+  background:rgba(255,122,41,.06);
+  transform:translateX(-4px);
+  border-radius:var(--radius-sm);
+}
+
+.item-text{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+
+.name-ar{
+  font-family:var(--font-ar);
+  font-weight:700;
+  font-size:16px;
+  color:var(--color-ink);
+}
+
+.name-en{
+  font-family:var(--font-en);
+  font-weight:500;
+  font-size:11px;
+  letter-spacing:.5px;
+  text-transform:uppercase;
+  color:var(--color-brown);
+}
+
+.price{
+  font-family:var(--font-en);
+  font-weight:600;
+  font-size:16px;
+  color:var(--color-orange);
+  white-space:nowrap;
+}
+
+.currency{
+  font-family:var(--font-ar);
+  font-size:11px;
+  margin-inline-start:2px;
+  color:var(--color-brown);
+}
+
+/* ---------- 9) الرسومات الزخرفية ---------- */
+.deco{
+  display:block;
+  width:78px;
+  height:78px;
+  margin:18px 0 4px auto;
+  opacity:.9;
+}
+
+.deco--cat{ width:88px; height:78px; }
+
+/* ---------- 10) تذييل بسيط ---------- */
+.footer-note{
+  text-align:center;
+  font-family:var(--font-en);
+  font-style:italic;
+  font-size:12px;
+  color:var(--color-brown);
+  padding:10px 20px 40px 90px;
+}
+
+/* ---------- 11) الزر العائم ---------- */
+.float-btn{
+  position:fixed;
+  bottom:26px;
+  right:calc(50% - min(430px,100vw)/2 + 20px);
+  width:52px;
+  height:52px;
+  border:none;
+  border-radius:50%;
+  background:var(--color-orange);
+  box-shadow:0 10px 24px -6px rgba(255,122,41,.55);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  z-index:20;
+  transition:transform .35s var(--ease), background .3s var(--ease), box-shadow .3s var(--ease);
+}
+
+.float-btn:hover{
+  transform:translateY(-3px) scale(1.05);
+  background:var(--color-orange-dark);
+}
+
+.float-btn:active{ transform:scale(.94); }
+
+.float-btn svg{ transition:transform .4s var(--ease); }
+
+.float-btn.is-up svg{ transform:rotate(180deg); }
+
+/* ---------- 12) حركة الظهور التدريجي (Scroll Reveal) ---------- */
+.reveal{
+  opacity:0;
+  transform:translateY(24px);
+  transition:opacity .7s var(--ease), transform .7s var(--ease);
+}
+
+.reveal.is-visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* ---------- 13) تفضيل تقليل الحركة ---------- */
+@media (prefers-reduced-motion: reduce){
+  *{ animation:none !important; transition:none !important; }
+  .reveal{ opacity:1; transform:none; }
+}
+
+/* ---------- 14) تجاوب إضافي لشاشات صغيرة جدًا ---------- */
+@media (max-width:360px){
+  .menu-letter{ font-size:78px; }
+  .menu-section{ padding-inline-start:74px; }
+  .brand{ font-size:34px; }
+}
