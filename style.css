@@ -297,3 +297,16 @@ main{ position:relative; z-index:2; }
   .menu-section{ padding-inline-start:74px; }
   .brand{ font-size:34px; }
 }
+.header-image{
+    width:220px;
+    display:block;
+    margin:0 auto 25px;
+    border-radius:25px;
+    object-fit:cover;
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
+    transition:.4s;
+}
+
+.header-image:hover{
+    transform:scale(1.03);
+}
