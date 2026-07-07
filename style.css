@@ -95,11 +95,11 @@ padding:18px;
 }
 
 .menu-letter{
-  font-family:var(--font-en);
+  font-family:'Cormorant Garamond', serif;
   font-weight:700;
-  font-size:96px;
-  line-height:.82;
-  letter-spacing:-2px;
+  font-size:108px;
+font-weight:700;
+letter-spacing:-4px;
   color:var(--color-orange);
   transform:translateX(-4px);
   animation:letterFloat 6s ease-in-out infinite;
@@ -146,15 +146,15 @@ padding:18px;
   text-transform:uppercase;
 }
 .subtitle{
-  font-family:'Georgia', serif;
-  font-style:italic;
-  font-weight:700;
-  font-size:24px;
-  color:var(--color-brown);
-  margin-top:4px;
-  transform:rotate(-10deg);
-  display:inline-block;
-  letter-spacing:1px;
+    font-family:'Cormorant Garamond', serif;
+    font-size:30px;
+    font-style:italic;
+    font-weight:600;
+    letter-spacing:2px;
+    color:var(--color-brown);
+    transform:rotate(-12deg);
+    display:inline-block;
+    margin-top:6px;
 }
 
 /* ---------- 7) الأقسام ---------- */
